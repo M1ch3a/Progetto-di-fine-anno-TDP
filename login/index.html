@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login con JSON DB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #145dbf;
+        }
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Accesso</h2>
+        <input type="text" id="username" placeholder="Username" autocomplete="off">
+        <input type="password" id="password" placeholder="Password">
+        <button id="loginBtn">Accedi</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        let usersDatabase = null;
+
+        // Carica il file JSON degli utenti
+        async function loadUsers() {
+            try {
+                const response = await fetch('users.json');
+                if (!response.ok) throw new Error('Errore nel caricamento del database utenti');
+                const data = await response.json();
+                usersDatabase = data.users;
+                console.log('Database utenti caricato:', usersDatabase);
+            } catch (error) {
+                console.error(error);
+                document.getElementById('message').innerHTML = 'Impossibile caricare il database. Riprova più tardi.';
+                document.getElementById('message').className = 'message error';
+            }
+        }
+
+        // Funzione di login
+        function login(username, password) {
+            if (!usersDatabase) {
+                return { success: false, message: 'Database non ancora caricato. Attendi...' };
+            }
+
+            const user = usersDatabase.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                // Login riuscito
+                let welcomeMsg = `Benvenuto ${user.username}! `;
+                if (user.role === 'admin') {
+                    welcomeMsg += 'Hai i privilegi di amministratore.';
+                } else {
+                    welcomeMsg += 'Accesso come utente normale.';
+                }
+                return { success: true, message: welcomeMsg, role: user.role };
+            } else {
+                return { success: false, message: 'Credenziali non valide. Riprova.' };
+            }
+        }
+
+        // Gestione evento click sul pulsante
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('message');
+
+            if (!username || !password) {
+                messageDiv.innerHTML = 'Inserisci username e password.';
+                messageDiv.className = 'message error';
+                return;
+            }
+
+            const result = login(username, password);
+            
+            if (result.success) {
+                messageDiv.innerHTML = result.message;
+                messageDiv.className = 'message success';
+                // Qui puoi reindirizzare l'utente o mostrare un'area privata
+                console.log('Login effettuato con ruolo:', result.role);
+                // Esempio: dopo 1 secondo reindirizzo (simulazione)
+                // setTimeout(() => { window.location.href = "dashboard.html"; }, 1000);
+            } else {
+                messageDiv.innerHTML = result.message;
+                messageDiv.className = 'message error';
+            }
+        });
+
+        // Carica il database all'avvio
+        loadUsers();
+    </script>
+</body>
+</html>
