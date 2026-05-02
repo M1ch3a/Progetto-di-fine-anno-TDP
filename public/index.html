@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenGaming - Benessere Digitale</title>
+    <meta name="description" content="Scopri come stress e performance si influenzano con dati reali ISTAT">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Zen<span>Gaming</span></a>
+            <div class="nav-links" id="nav-links">
+                <a href="/">Home</a>
+                <a href="/videogiochi">Videogiochi</a>
+                <a href="/simulatori">Simulatori</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>ZenGaming</h1>
+                <h2>Nel mondo digitale, un benessere reale</h2>
+                <p>Scopri l'equilibrio tra tecnologia e salute attraverso dati e statistiche</p>
+                <a href="#grafici" class="cta-button">Esplora i dati</a>
+            </div>
+        </section>
+
+        <section class="info-section" id="videogiochi">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Il lato sano del Gaming</h2>
+                    <p>Sviluppo cognitivo, coordinazione e gestione dello stress. Se vissuti con consapevolezza,
+                        videogiochi e simulatori sono potenti alleati.</p>
+                </div>
+
+                <div class="cards-grid">
+                    <a href="/videogiochi" class="card gateway-card" id="gateway-videogiochi" style="text-decoration: none; display: flex; flex-direction: column; justify-content: center; min-height: 250px;">
+                        <div class="card-icon" style="font-size: 4rem;">🎮</div>
+                        <h3 style="font-size: 2rem; color: var(--accent-cyan);">Esplora i Videogiochi</h3>
+                        <p class="desc" style="font-size: 1.1rem; margin-top: 1rem;">Il mondo del gaming su Mobile, Console e PC. Statistiche, piattaforme e impatto sociale.</p>
+                        <div class="gateway-btn" style="margin-top: 1.5rem; color: var(--accent-cyan); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Scopri di più &rarr;</div>
+                    </a>
+
+                    <a href="/simulatori" class="card gateway-card" id="gateway-simulatori" style="text-decoration: none; display: flex; flex-direction: column; justify-content: center; min-height: 250px;">
+                        <div class="card-icon" style="font-size: 4rem;">🥽</div>
+                        <h3 style="font-size: 2rem; color: var(--accent-magenta);">Mondo Simulatori</h3>
+                        <p class="desc" style="font-size: 1.1rem; margin-top: 1rem;">L'uso della VR e della simulazione per l'addestramento, l'apprendimento e il divertimento.</p>
+                        <div class="gateway-btn" style="margin-top: 1.5rem; color: var(--accent-magenta); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Scopri di più &rarr;</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="impact-section" id="impatto">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Impatto: Vantaggi e Svantaggi</h2>
+                    <p>Un'analisi equilibrata su come l'uso di videogiochi e simulatori influenzi la vita reale.</p>
+                </div>
+                
+                <div class="pros-cons-grid">
+                    <div class="impact-card pro-card">
+                        <div class="impact-header">
+                            <span class="impact-icon">✔️</span>
+                            <h3>Vantaggi</h3>
+                        </div>
+                        <ul class="impact-list">
+                            <li><strong>Sviluppo Cognitivo:</strong> Miglioramento del problem solving e della flessibilità mentale.</li>
+                            <li><strong>Riflessi e Coordinazione:</strong> Tempi di reazione ridotti e migliore coordinazione (es. simulatori di guida).</li>
+                            <li><strong>Addestramento Sicuro:</strong> I simulatori permettono di esercitarsi senza rischi (aviazione, medicina).</li>
+                            <li><strong>Socializzazione:</strong> Creazione di comunità online e cooperazione in multiplayer.</li>
+                        </ul>
+                    </div>
+
+                    <div class="impact-card con-card">
+                        <div class="impact-header">
+                            <span class="impact-icon">⚠️</span>
+                            <h3>Svantaggi</h3>
+                        </div>
+                        <ul class="impact-list">
+                            <li><strong>Sedentarietà:</strong> Passare molte ore seduti favorisce posture scorrette e problemi metabolici.</li>
+                            <li><strong>Rischio Dipendenza:</strong> L'uso eccessivo può interferire pesantemente con la vita quotidiana.</li>
+                            <li><strong>Affaticamento Visivo:</strong> La sovraesposizione agli schermi può causare disturbi della vista e del sonno.</li>
+                            <li><strong>Isolamento Sociale:</strong> Se abusato, il gaming può sostituire le interazioni fisiche faccia a faccia.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="chart-section" id="grafici">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Videogiocatori per Fascia d'Età</h2>
+                    <p>Distribuzione demografica dei videogiocatori in Italia. I dati dimostrano che il gaming è un fenomeno trasversale a tutte le età.</p>
+                </div>
+
+                <div class="chart-container">
+                    <div class="loader" id="chart-loader"></div>
+                    <canvas id="ageDemographicsChart"></canvas>
+                </div>
+
+                <div class="source-note">
+                    * Fonte: Rapporto annuale IIDEA (Italian Interactive Digital Entertainment Association)
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Progetto Scolastico a.s. 2025/2026</h4>
+                <p>Una dimostrazione tecnica e di design sull'impatto del digitale sulla salute.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Fonti e Crediti</h4>
+                <p>Dati statistici ufficiali forniti dal report annuale IIDEA sull'industria dei videogiochi in Italia.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 ZenGaming. Tutti i diritti riservati.
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
