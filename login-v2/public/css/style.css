@@ -1,0 +1,223 @@
+/* ============================================ */
+/* RESET CSS UNIVERSALE - azzera tutti gli stili di default del browser */
+/* ============================================ */
+* {
+    margin: 0;           /* Rimuove i margini esterni da TUTTI gli elementi */
+    padding: 0;          /* Rimuove i padding interni da TUTTI gli elementi */
+    box-sizing: border-box; /* Fa sì che larghezza/altezza includano bordi e padding */
+}
+
+/* ============================================ */
+/* STILI DEL BODY - contenitore principale della pagina */
+/* ============================================ */
+body {
+    font-family: 'Orbitron', 'Segoe UI', sans-serif; /* Font cyberpunk/tecnologico */
+    background-color: #000000;  /* Colore nero di fallback se lo sfondo non carica */
+    display: flex;              /* Attiva il layout flessibile */
+    justify-content: center;    /* Centra orizzontalmente il contenuto */
+    align-items: center;        /* Centra verticalmente il contenuto */
+    min-height: 100vh;          /* Altezza minima = 100% della viewport */
+    padding: 20px;              /* Spazio interno per evitare bordi attaccati */
+    margin: 0;                  /* Nessun margine esterno */
+    position: relative;         /* Permette di posizionare elementi figli rispetto al body */
+}
+
+/* ============================================ */
+/* SFONDO IMMAGINE - posizionata fissa senza tagli */
+/* ============================================ */
+.background {
+    position: fixed;            /* Rimane ferma mentre si scrolla */
+    top: 50%;                   /* Posiziona il bordo superiore al centro */
+    left: 50%;                  /* Posiziona il bordo sinistro al centro */
+    transform: translate(-50%, -50%); /* Sposta indietro del 50% per centrare perfettamente */
+    width: 100%;                /* Larghezza piena */
+    height: 100%;               /* Altezza piena */
+    object-fit: contain;        /* Adatta l'immagine senza tagliarla (la fa entrare tutta) */
+    z-index: 0;                 /* Livello più basso, sotto tutto il contenuto */
+}
+
+/* ============================================ */
+/* OVERLAY - strato scuro per far risaltare il contenuto */
+/* ============================================ */
+body::before {
+    content: '';               /* Elemento vuoto ma necessario per far apparire il pseudo-elemento */
+    position: fixed;           /* Posizione fissa come lo sfondo */
+    top: 0;                    /* Parte dall'angolo in alto a sinistra */
+    left: 0;
+    width: 100%;               /* Copre tutta la larghezza */
+    height: 100%;              /* Copre tutta l'altezza */
+    background: rgba(0, 0, 0, 0.5); /* Nero semitrasparente al 50% */
+    z-index: 0;                /* Stesso livello dello sfondo */
+}
+
+/* ============================================ */
+/* CONTAINER DEL LOGIN - contiene la card */
+/* ============================================ */
+.login-container {
+    width: 100%;               /* Larghezza responsiva */
+    max-width: 500px;          /* Massimo 500px su schermi grandi */
+    position: relative;        /* Per stare sopra lo sfondo */
+    z-index: 1;                /* Livello 1 -> sopra l'overlay (z-index:0) */
+}
+
+/* ============================================ */
+/* CARD PRINCIPALE - l'elemento visibile del form */
+/* ============================================ */
+.login-card {
+    background: rgba(15, 23, 42, 0.9); /* Blu scuro con trasparenza al 90% */
+    border: 1px solid rgba(0, 255, 255, 0.2); /* Bordo ciano chiaro molto trasparente */
+    border-radius: 12px;        /* Angoli arrotondati */
+    padding: 2.5rem;            /* Spazio interno generoso */
+    backdrop-filter: blur(10px); /* Effetto vetro smerigliato - sfoca ciò che sta dietro */
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.1); /* Ombra luminosa ciano */
+    transition: 0.3s;           /* Transizione morbida per l'hover */
+}
+
+/* Effetto HOVER sulla card - si illumina di più */
+.login-card:hover {
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.25); /* Ombra più intensa */
+}
+
+/* ============================================ */
+/* TITOLO H1 - effetto cyberpunk/neon */
+/* ============================================ */
+h1 {
+    text-align: center;         /* Centrato */
+    margin-bottom: 2rem;        /* Spazio sotto per separare dagli input */
+    font-size: 1.8rem;          /* Dimensione del testo */
+    font-weight: 800;           /* Grassetto molto pesante */
+    color: #00ffff;             /* Colore ciano acceso */
+    text-shadow: 0 0 10px #00ffff; /* Bagliore neon intorno al testo */
+    letter-spacing: 2px;        /* Spaziatura tra le lettere (effetto futuristico) */
+}
+
+/* ============================================ */
+/* GRUPPO FORM - contiene label + input */
+/* ============================================ */
+.form-group {
+    margin-bottom: 1.5rem;      /* Spazio tra un campo e l'altro */
+}
+
+/* ETICHETTA DEI CAMPI */
+label {
+    display: block;             /* Occupa tutta la riga */
+    font-size: 0.8rem;          /* Testo piccolo */
+    color: #38bdf8;             /* Azzurro chiaro */
+    letter-spacing: 1px;        /* Leggera spaziatura */
+    margin-bottom: 0.5rem;      /* Spazio tra label e input */
+    font-weight: 500;           /* Medio grassetto */
+}
+
+/* CAMPI INPUT */
+input {
+    width: 100%;                /* Larghezza piena del contenitore */
+    padding: 12px;              /* Spazio interno per rendere l'input comodo */
+    border-radius: 8px;         /* Angoli arrotondati */
+    border: 1px solid #334155;  /* Bordo grigio scuro */
+    background: #020617;        /* Sfondo blu molto scuro (quasi nero) */
+    color: #e5e7eb;             /* Testo grigio chiaro */
+    transition: 0.2s;           /* Transizione per l'effetto focus */
+    font-size: 1rem;            /* Dimensione testo standard */
+}
+
+/* EFFETTO FOCUS - quando clicco nell'input */
+input:focus {
+    border-color: #00ffff;      /* Bordo diventa ciano brillante */
+    box-shadow: 0 0 10px #00ffff; /* Effetto bagliore esterno */
+    outline: none;              /* Rimuove il bordo blu di default del browser */
+}
+
+/* ============================================ */
+/* BOTTONE DI LOGIN - gradiente cyberpunk */
+/* ============================================ */
+.btn-login {
+    width: 100%;                /* Larghezza piena */
+    padding: 12px;              /* Stesso padding degli input per coerenza */
+    border-radius: 8px;         /* Angoli arrotondati */
+    border: none;               /* Nessun bordo */
+    background: linear-gradient(90deg, #00ffff, #ff00ff); /* Gradiente: da CIANO a MAGENTA */
+    color: black;               /* Testo nero per contrasto */
+    font-weight: bold;          /* Testo in grassetto */
+    cursor: pointer;            /* Cambia il cursore a mano per indicare che è cliccabile */
+    text-transform: uppercase;  /* Testo tutto maiuscolo */
+    letter-spacing: 1px;        /* Spaziatura tra lettere */
+    transition: 0.3s;           /* Transizione per hover */
+    margin-top: 0.5rem;         /* Piccolo spazio sopra */
+}
+
+/* EFFETTO HOVER SUL BOTTONE */
+.btn-login:hover {
+    transform: scale(1.02);     /* Leggero ingrandimento (del 2%) */
+    box-shadow: 0 0 20px #00ffff; /* Bagliore ciano intenso */
+}
+
+/* ============================================ */
+/* MESSAGGIO DI ERRORE */
+/* ============================================ */
+.error-message {
+    background: rgba(255, 0, 0, 0.1);  /* Rosso semitrasparente */
+    color: #ff4d4d;                     /* Rosso chiaro per il testo */
+    border-left: 3px solid #ff0000;     /* Bordo sinistro rosso pieno */
+    padding: 10px;                      /* Spazio interno */
+    border-radius: 6px;                 /* Angoli arrotondati */
+    margin-bottom: 1rem;                /* Spazio sotto */
+}
+
+/* Classe HIDDEN per nascondere il messaggio di errore */
+.error-message.hidden {
+    display: none;          /* Nasconde completamente l'elemento */
+}
+
+/* ============================================ */
+/* NOTA INFORMATIVA - mostra le credenziali di test */
+/* ============================================ */
+.info-note {
+    margin-top: 1.5rem;              /* Spazio sopra */
+    padding-top: 1rem;               /* Padding sopra interno */
+    border-top: 1px solid rgba(0, 255, 255, 0.2); /* Linea divisoria ciano */
+    text-align: center;              /* Testo centrato */
+    font-size: 0.8rem;               /* Testo piccolo */
+    color: #94a3b8;                  /* Grigio ardesia */
+}
+
+.info-note p {
+    margin-bottom: 0.5rem;           /* Spazio sotto il paragrafo */
+    color: #00ffff;                  /* Testo ciano per attirare l'attenzione */
+}
+
+.info-note ul {
+    list-style: none;                /* Rimuove i pallini della lista */
+    display: flex;                   /* Layout flessibile per la lista */
+    flex-wrap: wrap;                 /* Se non c'è spazio, va a capo */
+    justify-content: center;         /* Centra gli elementi */
+    gap: 0.8rem;                     /* Spazio tra gli elementi */
+}
+
+.info-note li {
+    font-family: monospace;          /* Font a larghezza fissa (tipo codice) */
+    font-size: 0.75rem;              /* Testo ancora più piccolo */
+    background: rgba(0, 0, 0, 0.5);  /* Sfondo nero semitrasparente */
+    padding: 0.2rem 0.5rem;          /* Spazio interno: sopra/sotto 0.2 - destra/sinistra 0.5 */
+    border-radius: 4px;              /* Angoli leggermente arrotondati */
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN - per schermi piccoli (telefoni) */
+/* ============================================ */
+@media (max-width: 480px) {
+    /* Quando lo schermo è più stretto di 480px (es. smartphone) */
+    
+    .login-card {
+        padding: 1.5rem;        /* Riduce il padding interno della card */
+    }
+    
+    h1 {
+        font-size: 1.4rem;      /* Riduce la dimensione del titolo */
+    }
+    
+    .info-note ul {
+        flex-direction: column;  /* Lista in colonna invece che in riga */
+        align-items: center;     /* Centra gli elementi */
+        gap: 0.4rem;             /* Riduce lo spazio tra elementi */
+    }
+}

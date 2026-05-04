@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema Autenticazione</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-card">
+            <h1>📊 Dashboard</h1>
+            
+            <div id="user-info" class="user-info">
+                <p>Caricamento informazioni utente...</p>
+            </div>
+            
+            <div class="dashboard-buttons">
+                <button id="logout-btn" class="btn-logout">🚪 Logout</button>
+            </div>
+            
+            <div id="admin-panel" class="admin-panel hidden">
+                <h2>👑 Pannello Admin</h2>
+                <button id="get-users-btn" class="btn-admin">Visualizza Tutti gli Utenti</button>
+                <div id="users-list" class="users-list"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Carica le informazioni dell'utente
+        async function loadUserInfo() {
+            try {
+                const response = await fetch('/api/user');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const user = data.user;
+                    const userInfoDiv = document.getElementById('user-info');
+                    userInfoDiv.innerHTML = `
+                        <p><strong>Benvenuto, ${user.username}!</strong></p>
+                        <p><strong>ID:</strong> ${user.id}</p>
+                        <p><strong>Ruolo:</strong> ${user.role === 'admin' ? 'Amministratore' : 'Utente'}</p>
+                    `;
+                    
+                    // Se l'utente è admin, mostra il pannello admin
+                    if (user.role === 'admin') {
+                        document.getElementById('admin-panel').classList.remove('hidden');
+                        document.getElementById('admin-panel').classList.add('visible');
+                    }
+                } else {
+                    // Se non autenticato, reindirizza al login
+                    window.location.href = '/login';
+                }
+            } catch (error) {
+                console.error('Errore nel caricamento utente:', error);
+                window.location.href = '/login';
+            }
+        }
+        
+        // Logout
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            window.location.href = '/logout';
+        });
+        
+        // Funzione admin per ottenere tutti gli utenti
+        async function loadAllUsers() {
+            const usersListDiv = document.getElementById('users-list');
+            const getUsersBtn = document.getElementById('get-users-btn');
+            
+            try {
+                getUsersBtn.disabled = true;
+                getUsersBtn.textContent = 'Caricamento...';
+                
+                const response = await fetch('/api/users');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const users = data.users;
+                    let html = '<h3>Lista Utenti:</h3><ul>';
+                    users.forEach(user => {
+                        html += `<li>ID: ${user.id} - Username: ${user.username} - Ruolo: ${user.role}</li>`;
+                    });
+                    html += '</ul>';
+                    usersListDiv.innerHTML = html;
+                } else {
+                    usersListDiv.innerHTML = '<p class="error">Errore nel caricamento degli utenti</p>';
+                }
+            } catch (error) {
+                usersListDiv.innerHTML = '<p class="error">Errore di connessione</p>';
+            } finally {
+                getUsersBtn.disabled = false;
+                getUsersBtn.textContent = 'Visualizza Tutti gli Utenti';
+            }
+        }
+        
+        // Evento per il pulsante admin
+        document.getElementById('get-users-btn')?.addEventListener('click', loadAllUsers);
+        
+        // Carica le informazioni all'avvio
+        loadUserInfo();
+    </script>
+</body>
+</html>

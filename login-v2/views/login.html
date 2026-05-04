@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!-- 
+    DICHIARAZIONE DOCTYPE: dice al browser che questo è un documento HTML5.
+    Senza questa, il browser potrebbe attivare la "modalità quirks" (vecchi standard).
+-->
+
+<html lang="it">
+<!-- 
+    TAG HTML: elemento radice del documento.
+    lang="it" specifica la lingua italiana (utile per motori di ricerca e screen reader).
+-->
+
+<head>
+    <!-- 
+        HEAD: contiene i metadati della pagina, NON visibili all'utente.
+        Qui si trovano informazioni tecniche e collegamenti a risorse.
+    -->
+    
+    <meta charset="UTF-8">
+    <!-- 
+        META CHARSET: definisce la codifica dei caratteri come UTF-8.
+        Permette di usare lettere accentate, emoji e caratteri speciali senza errori.
+        È fondamentale per mostrare correttamente "Accesso", "Username", ecc.
+    -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 
+        META VIEWPORT: controlla come la pagina viene visualizzata sui dispositivi mobili.
+        - width=device-width: larghezza uguale alla larghezza fisica del dispositivo
+        - initial-scale=1.0: zoom iniziale normale (non ingrandito né rimpicciolito)
+        Senza questo tag, i dispositivi mobili mostrerebbero la pagina come "rimpicciolita".
+    -->
+    
+    <title>Login - Sistema Autenticazione</title>
+    <!-- 
+        TITLE: definisce il titolo che appare nella scheda del browser.
+        Viene anche usato dai motori di ricerca e nei segnalibri.
+    -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- 
+        LINK: collega il file CSS esterno.
+        rel="stylesheet" dice che è un foglio di stile.
+        href="/css/style.css" è il percorso del file (partendo dalla root del server).
+    -->
+</head>
+
+<body>
+    <!-- 
+        BODY: contiene TUTTO il contenuto visibile della pagina.
+        Gli stili CSS applicheranno sfondo, layout, ecc.
+    -->
+
+    <!-- ============================================ -->
+    <!-- SFONDO IMMAGINE - strategy per immagine piena senza tagli -->
+    <!-- ============================================ -->
+    <img src="/image/back-zen.png" alt="background" class="background">
+    <!-- 
+        TAG IMG: inserisce l'immagine di sfondo.
+        - src="/image/back-zen.png": percorso dell'immagine
+        - alt="background": testo alternativo se l'immagine non carica (accessibilità)
+        - class="background": riferita al CSS che la posiziona in fixed e centrata
+        
+        NOTA: si usa <img> invece del background CSS perché permette:
+        1. object-fit: contain (immagine intera senza tagli)
+        2. Migliore controllo del posizionamento
+        3. Più facile da rendere responsiva
+    -->
+
+    <!-- ============================================ -->
+    <!-- CONTAINER PRINCIPALE DEL LOGIN -->
+    <!-- ============================================ -->
+    <div class="login-container">
+        <!-- 
+            DIV: contenitore generico.
+            class="login-container": usata dal CSS per larghezza max 500px e centratura.
+            Serve come "scatola" che tiene tutto il contenuto del form.
+        -->
+        
+        <div class="login-card">
+            <!-- 
+                CARD: è l'elemento vetroso con sfondo semitrasparente.
+                Le classi "login-card" applicano: blur, bordi arrotondati, ombra neon.
+            -->
+            
+            <h1>Accesso</h1>
+            <!-- 
+                H1: titolo principale di primo livello.
+                Contiene "Accesso" con effetto neon ciano grazie al CSS.
+                Dovrebbe esserci UN SOLO H1 per pagina per motivi SEO.
+            -->
+            
+            <!-- ============================================ -->
+            <!-- MESSAGGIO DI ERRORE (inizialmente nascosto) -->
+            <!-- ============================================ -->
+            <div id="error-message" class="error-message hidden"></div>
+            <!-- 
+                DIV per i messaggi di errore:
+                - id="error-message": usato da JavaScript per trovare l'elemento e modificarlo
+                - class="error-message hidden": 
+                    * error-message: stili CSS (bordo rosso, sfondo trasparente)
+                    * hidden: inizialmente nascosto (display: none)
+                - JavaScript mostrerà questo div quando si verifica un errore di login
+            -->
+            
+            <!-- ============================================ -->
+            <!-- FORM DI LOGIN - invia i dati al server -->
+            <!-- ============================================ -->
+            <form id="login-form">
+                <!-- 
+                    FORM: contiene i campi che l'utente compila.
+                    id="login-form": JavaScript lo usa per aggiungere l'evento submit.
+                    NOTA: non c'è action="..." perché JavaScript gestisce l'invio in modo asincrono (fetch)
+                -->
+                
+                <!-- PRIMO CAMPO: USERNAME -->
+                <div class="form-group">
+                    <!-- Raggruppa etichetta + input per lo spacing verticale -->
+                    
+                    <label for="username">Username:</label>
+                    <!-- 
+                        LABEL: etichetta associata all'input.
+                        for="username": si collega all'input con id="username".
+                        Cliccare sulla label equivale a cliccare sull'input (più accessibile).
+                    -->
+                    
+                    <input type="text" id="username" name="username" required autofocus>
+                    <!-- 
+                        INPUT: campo di testo per lo username.
+                        - type="text": campo di testo normale
+                        - id="username": collegato alla label
+                        - name="username": nome del campo quando viene inviato al server
+                        - required: campo obbligatorio (HTML5 validation)
+                        - autofocus: il cursore parte automaticamente in questo campo
+                    -->
+                </div>
+                
+                <!-- SECONDO CAMPO: PASSWORD -->
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <!-- 
+                        INPUT PASSWORD:
+                        - type="password": i caratteri vengono mostrati come pallini/asterischi
+                        - id="password": per la label
+                        - name="password": come si chiama il campo sul server
+                        - required: campo obbligatorio
+                    -->
+                </div>
+                
+                <!-- BOTTONE DI INVIO -->
+                <button type="submit" class="btn-login">Accedi</button>
+                <!-- 
+                    BUTTON: pulsante cliccabile.
+                    - type="submit": quando cliccato, invia il form (triggera l'evento submit)
+                    - class="btn-login": applica gli stili CSS cyberpunk (gradiente ciano/magenta)
+                    - Testo "Accedi": quello che vede l'utente
+                -->
+            </form>
+            
+            <!-- ============================================ -->
+            <!-- NOTA INFORMATIVA - credenziali per test -->
+            <!-- ============================================ -->
+            <div class="info-note">
+                <p>Credenziali di test:</p>
+                <!-- PARAGRAFO: testo informativo in ciano -->
+                
+                <ul>
+                    <!-- UL: lista non ordinata (con pallini - ma CSS li rimuove) -->
+                    <li>mario.rossi / password123</li>
+                    <!-- LI: ogni elemento della lista (mostra una coppia username/password) -->
+                    <li>luca.verdi / mypass</li>
+                    <li>admin / 1234</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT - gestione dell'invio del form -->
+    <!-- ============================================ -->
+    <script>
+        /* 
+            TAG SCRIPT: contiene codice JavaScript eseguito nel browser.
+            Posizionato alla fine del body per:
+            1. Non bloccare il caricamento degli elementi visivi
+            2. Garantire che gli elementi HTML esistano già quando il codice viene eseguito
+        */
+        
+        // Seleziona gli elementi dal DOM (Document Object Model)
+        const form = document.getElementById('login-form');
+        // document.getElementById: trova l'elemento con id="login-form"
+        
+        const errorDiv = document.getElementById('error-message');
+        // Elemento dove mostrare i messaggi di errore
+        
+        // Aggiunge un "listener" per l'evento submit del form
+        form.addEventListener('submit', async (e) => {
+            // 'submit' = evento scatenato quando si clicca il bottone o si preme Invio
+            // async = la funzione può usare 'await' per operazioni asincrone
+            // (e) = parametro che contiene informazioni sull'evento
+            
+            e.preventDefault();
+            // IMPERATIVO: impedisce il comportamento di default del form
+            // Senza questo, la pagina si ricaricherebbe (comportamento standard HTML)
+            // Con preventDefault(), gestiamo l'invio manualmente con JavaScript
+            
+            // Nascondi eventuali errori precedenti (pulisce il div)
+            errorDiv.classList.add('hidden');
+            // classList.add = aggiunge la classe 'hidden' all'elemento
+            // Così l'eventuale messaggio di errore vecchio scompare
+            
+            // Legge i valori inseriti dall'utente
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            // .value = proprietà che contiene il testo digitato nell'input
+            
+            try {
+                // try/catch = gestisce errori (es. server non raggiungibile)
+                
+                // FETCH API: effettua una richiesta HTTP al server
+                const response = await fetch('/login', {
+                    // fetch = funzione moderna per chiamate di rete
+                    // '/login' = endpoint (indirizzo) sul server dove inviare i dati
+                    // await = aspetta la risposta prima di continuare
+                    
+                    method: 'POST',              // Metodo HTTP POST (invia dati)
+                    headers: {
+                        'Content-Type': 'application/json'  // Il body è in formato JSON
+                    },
+                    body: JSON.stringify({ username, password })
+                    // JSON.stringify: converte l'oggetto in stringa JSON
+                    // Il server riceverà: {"username":"mario.rossi","password":"password123"}
+                });
+                
+                const data = await response.json();
+                // response.json(): estrae il JSON dalla risposta del server
+                // Il server risponde con qualcosa come: { success: true } o { success: false, message: "..." }
+                
+                if (data.success) {
+                    // Se il login è riuscito (data.success === true)
+                    
+                    // Login riuscito - reindirizza alla dashboard
+                    window.location.href = '/dashboard';
+                    // window.location.href: cambia l'URL della pagina (reindirizzamento)
+                    // Il browser carica automaticamente la pagina /dashboard
+                } else {
+                    // Se il login fallisce (data.success === false)
+                    
+                    // Mostra errore
+                    errorDiv.textContent = data.message || 'Errore durante il login';
+                    // textContent: imposta il testo dentro il div
+                    // data.message: messaggio specifico dal server
+                    // || (OR): se data.message non esiste, usa 'Errore durante il login'
+                    
+                    errorDiv.classList.remove('hidden');
+                    // remove('hidden'): toglie la classe, rendendo visibile il messaggio
+                }
+            } catch (error) {
+                // Questa parte si esegue se la fetch fallisce (es. server offline)
+                
+                errorDiv.textContent = 'Errore di connessione al server';
+                errorDiv.classList.remove('hidden');
+            }
+        });
+        
+        /* 
+            RIASSUNTO DEL FLUSSO:
+            1. Utente compila username e password
+            2. Clicca "Accedi" o preme Invio
+            3. JavaScript intercetta l'evento (preventDefault)
+            4. Invia i dati al server con fetch POST
+            5. Attende la risposta del server (await)
+            6. Se success=true: reindirizza a /dashboard
+            7. Se success=false: mostra il messaggio di errore
+            8. Se fetch fallisce: mostra errore di connessione
+        */
+    </script>
+</body>
+</html>

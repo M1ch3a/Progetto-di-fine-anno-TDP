@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "mario.rossi",
+      "password": "password123",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "username": "luca.verdi",
+      "password": "mypass",
+      "role": "user"
+    },
+    {
+      "id": 3,
+      "username": "admin",
+      "password": "1234",
+      "role": "admin"
+    }
+  ]
+}
