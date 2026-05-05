@@ -278,31 +278,139 @@ h4 {
     font-size: 0.95rem;
 }
 
-.gateway-card {
-    border: 2px solid rgba(255, 255, 255, 0.05);
-    background: linear-gradient(145deg, var(--surface-color), #111118);
+.gateway-banners {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 2rem;
 }
 
-.gateway-card:hover {
-    transform: translateY(-10px) scale(1.02);
+.gateway-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(26, 26, 36, 0.8), rgba(13, 13, 13, 0.9));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 3rem;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
 }
 
-#gateway-videogiochi:hover {
-    border-color: var(--accent-cyan);
-    box-shadow: 0 15px 40px rgba(0, 240, 255, 0.2);
+.gateway-banner:hover {
+    transform: scale(1.02);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-#gateway-simulatori:hover {
-    border-color: var(--accent-magenta);
-    box-shadow: 0 15px 40px rgba(255, 0, 127, 0.2);
+.gateway-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
 }
 
-.gateway-btn {
-    transition: transform 0.3s ease;
+#banner-videogiochi::before {
+    background: radial-gradient(circle at 20% 50%, rgba(0, 240, 255, 0.15) 0%, transparent 60%);
 }
 
-.gateway-card:hover .gateway-btn {
-    transform: translateX(10px);
+#banner-videogiochi:hover {
+    box-shadow: 0 20px 50px rgba(0, 240, 255, 0.15);
+}
+#banner-videogiochi:hover::before {
+    opacity: 1;
+}
+
+#banner-simulatori::before {
+    background: radial-gradient(circle at 80% 50%, rgba(255, 0, 127, 0.15) 0%, transparent 60%);
+}
+
+#banner-simulatori:hover {
+    box-shadow: 0 20px 50px rgba(255, 0, 127, 0.15);
+}
+#banner-simulatori:hover::before {
+    opacity: 1;
+}
+
+.banner-content {
+    flex: 1;
+    z-index: 1;
+    padding: 0 2rem;
+}
+
+.banner-image-container {
+    flex: 0 0 300px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.gateway-banner:hover .banner-img {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+#banner-videogiochi .banner-img {
+    filter: drop-shadow(0 15px 30px rgba(0, 240, 255, 0.6));
+}
+
+#banner-simulatori .banner-img {
+    filter: drop-shadow(0 15px 30px rgba(255, 0, 127, 0.6));
+}
+
+.banner-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+#banner-videogiochi .banner-title { color: var(--accent-cyan); }
+#banner-simulatori .banner-title { color: var(--accent-magenta); }
+
+.banner-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.banner-btn {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+}
+
+#banner-videogiochi .banner-btn {
+    color: var(--bg-color);
+    background-color: var(--accent-cyan);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+#banner-videogiochi:hover .banner-btn {
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+}
+
+#banner-simulatori .banner-btn {
+    color: var(--bg-color);
+    background-color: var(--accent-magenta);
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+}
+#banner-simulatori:hover .banner-btn {
+    box-shadow: 0 0 25px rgba(255, 0, 127, 0.8);
 }
 
 .card-tooltip {

@@ -16,43 +16,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Fetch and populate Stats
-    fetchStats();
-
     // Chart initialization
     initChart();
-
-    function fetchStats() {
-        fetch('/api/iidea/stats')
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) {
-                    const elMobile = document.getElementById('stat-mobile');
-                    const elConsole = document.getElementById('stat-console');
-                    const elVr = document.getElementById('stat-vr');
-                    
-                    if (elMobile) elMobile.innerText = data.data.mobile;
-                    if (elConsole) elConsole.innerText = data.data.consolePC;
-                    if (elVr) elVr.innerText = data.data.vrSimulators;
-                }
-            })
-            .catch(err => console.error("Error fetching stats:", err));
-    }
 
     function initChart() {
         const loader = document.getElementById('chart-loader');
         const canvas = document.getElementById('ageDemographicsChart');
         if (!canvas || !loader) return;
-        
+
         const ctx = canvas.getContext('2d');
-        
+
         loader.style.display = 'block';
         canvas.style.opacity = '0.3';
 
         fetch('/api/iidea/demographics')
             .then(res => res.json())
             .then(data => {
-                if(data.success) {
+                if (data.success) {
                     new Chart(ctx, {
                         type: 'bar',
                         data: {
@@ -78,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     borderColor: '#FF007F',
                                     borderWidth: 1,
                                     callbacks: {
-                                        label: function(context) {
+                                        label: function (context) {
                                             return `${context.raw}% del totale videogiocatori`;
                                         }
                                     }

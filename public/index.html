@@ -57,19 +57,29 @@
                         videogiochi e simulatori sono potenti alleati.</p>
                 </div>
 
-                <div class="cards-grid">
-                    <a href="/videogiochi" class="card gateway-card" id="gateway-videogiochi" style="text-decoration: none; display: flex; flex-direction: column; justify-content: center; min-height: 250px;">
-                        <div class="card-icon" style="font-size: 4rem;">🎮</div>
-                        <h3 style="font-size: 2rem; color: var(--accent-cyan);">Esplora i Videogiochi</h3>
-                        <p class="desc" style="font-size: 1.1rem; margin-top: 1rem;">Il mondo del gaming su Mobile, Console e PC. Statistiche, piattaforme e impatto sociale.</p>
-                        <div class="gateway-btn" style="margin-top: 1.5rem; color: var(--accent-cyan); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Scopri di più &rarr;</div>
+                <div class="gateway-banners">
+                    <!-- Banner Videogiochi -->
+                    <a href="/videogiochi" class="gateway-banner" id="banner-videogiochi">
+                        <div class="banner-image-container">
+                            <img src="/images/controller.png" alt="Controller" class="banner-img" />
+                        </div>
+                        <div class="banner-content">
+                            <h3 class="banner-title">Esplora i Videogiochi</h3>
+                            <p class="banner-desc">Il mondo del gaming su Mobile, Console e PC. Tuffati nelle statistiche, scopri le piattaforme più amate e analizza il vero impatto sociale del gioco.</p>
+                            <div class="banner-btn">Scopri di più &rarr;</div>
+                        </div>
                     </a>
 
-                    <a href="/simulatori" class="card gateway-card" id="gateway-simulatori" style="text-decoration: none; display: flex; flex-direction: column; justify-content: center; min-height: 250px;">
-                        <div class="card-icon" style="font-size: 4rem;">🥽</div>
-                        <h3 style="font-size: 2rem; color: var(--accent-magenta);">Mondo Simulatori</h3>
-                        <p class="desc" style="font-size: 1.1rem; margin-top: 1rem;">L'uso della VR e della simulazione per l'addestramento, l'apprendimento e il divertimento.</p>
-                        <div class="gateway-btn" style="margin-top: 1.5rem; color: var(--accent-magenta); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Scopri di più &rarr;</div>
+                    <!-- Banner Simulatori -->
+                    <a href="/simulatori" class="gateway-banner" id="banner-simulatori" style="flex-direction: row-reverse; text-align: right;">
+                        <div class="banner-image-container">
+                            <img src="/images/visore.png" alt="Visore VR" class="banner-img" />
+                        </div>
+                        <div class="banner-content">
+                            <h3 class="banner-title">Mondo Simulatori</h3>
+                            <p class="banner-desc">L'uso della Realtà Virtuale e della simulazione avanzata. Dall'addestramento professionale aerospaziale al puro divertimento immersivo.</p>
+                            <div class="banner-btn">Scopri di più &rarr;</div>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -81,7 +91,7 @@
                     <h2>Impatto: Vantaggi e Svantaggi</h2>
                     <p>Un'analisi equilibrata su come l'uso di videogiochi e simulatori influenzi la vita reale.</p>
                 </div>
-                
+
                 <div class="pros-cons-grid">
                     <div class="impact-card pro-card">
                         <div class="impact-header">
@@ -89,10 +99,14 @@
                             <h3>Vantaggi</h3>
                         </div>
                         <ul class="impact-list">
-                            <li><strong>Sviluppo Cognitivo:</strong> Miglioramento del problem solving e della flessibilità mentale.</li>
-                            <li><strong>Riflessi e Coordinazione:</strong> Tempi di reazione ridotti e migliore coordinazione (es. simulatori di guida).</li>
-                            <li><strong>Addestramento Sicuro:</strong> I simulatori permettono di esercitarsi senza rischi (aviazione, medicina).</li>
-                            <li><strong>Socializzazione:</strong> Creazione di comunità online e cooperazione in multiplayer.</li>
+                            <li><strong>Sviluppo Cognitivo:</strong> Miglioramento del problem solving e della
+                                flessibilità mentale.</li>
+                            <li><strong>Riflessi e Coordinazione:</strong> Tempi di reazione ridotti e migliore
+                                coordinazione (es. simulatori di guida).</li>
+                            <li><strong>Addestramento Sicuro:</strong> I simulatori permettono di esercitarsi senza
+                                rischi (aviazione, medicina).</li>
+                            <li><strong>Socializzazione:</strong> Creazione di comunità online e cooperazione in
+                                multiplayer.</li>
                         </ul>
                     </div>
 
@@ -102,10 +116,14 @@
                             <h3>Svantaggi</h3>
                         </div>
                         <ul class="impact-list">
-                            <li><strong>Sedentarietà:</strong> Passare molte ore seduti favorisce posture scorrette e problemi metabolici.</li>
-                            <li><strong>Rischio Dipendenza:</strong> L'uso eccessivo può interferire pesantemente con la vita quotidiana.</li>
-                            <li><strong>Affaticamento Visivo:</strong> La sovraesposizione agli schermi può causare disturbi della vista e del sonno.</li>
-                            <li><strong>Isolamento Sociale:</strong> Se abusato, il gaming può sostituire le interazioni fisiche faccia a faccia.</li>
+                            <li><strong>Sedentarietà:</strong> Passare molte ore seduti favorisce posture scorrette e
+                                problemi metabolici.</li>
+                            <li><strong>Rischio Dipendenza:</strong> L'uso eccessivo può interferire pesantemente con la
+                                vita quotidiana.</li>
+                            <li><strong>Affaticamento Visivo:</strong> La sovraesposizione agli schermi può causare
+                                disturbi della vista e del sonno.</li>
+                            <li><strong>Isolamento Sociale:</strong> Se abusato, il gaming può sostituire le interazioni
+                                fisiche faccia a faccia.</li>
                         </ul>
                     </div>
                 </div>
@@ -116,7 +134,8 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Videogiocatori per Fascia d'Età</h2>
-                    <p>Distribuzione demografica dei videogiocatori in Italia. I dati dimostrano che il gaming è un fenomeno trasversale a tutte le età.</p>
+                    <p>Distribuzione demografica dei videogiocatori in Italia. I dati dimostrano che il gaming è un
+                        fenomeno trasversale a tutte le età.</p>
                 </div>
 
                 <div class="chart-container">
@@ -139,7 +158,8 @@
             </div>
             <div class="footer-col">
                 <h4>Fonti e Crediti</h4>
-                <p>Dati statistici ufficiali forniti dal report annuale IIDEA sull'industria dei videogiochi in Italia.</p>
+                <p>Dati statistici ufficiali forniti dal report annuale IIDEA sull'industria dei videogiochi in Italia.
+                </p>
             </div>
         </div>
         <div class="footer-bottom">
