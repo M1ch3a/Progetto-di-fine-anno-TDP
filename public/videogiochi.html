@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZenGaming - Videogiochi</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
 
     <nav class="navbar" id="navbar">
@@ -30,14 +37,193 @@
         </div>
     </nav>
 
-    <main style="min-height: 80vh; display:flex; align-items:center; justify-content:center; text-align:center;">
-        <div class="container">
-            <h1 style="font-size: 3rem; color: var(--accent-cyan); text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);">Sezione Videogiochi</h1>
-            <p style="color: var(--text-muted); font-size: 1.2rem; margin-top: 1rem;">Pagina in costruzione... I dettagli verranno aggiunti in seguito.</p>
-        </div>
+    <main>
+        <section class="hero" id="hero" style="min-height: 40vh;">
+            <div class="hero-overlay"></div>
+            <div class="hero-content" style="padding-top: 100px;">
+                <h1 style="font-size: 3rem; color: var(--accent-cyan); text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);">
+                    Videogiochi</h1>
+                <p style="color: var(--text-muted); font-size: 1.2rem;">Analisi approfondita: Categorie, Benefici vs
+                    Rischi e Statistiche</p>
+            </div>
+        </section>
+
+        <!-- Categorie di Gioco -->
+        <section class="categories-section" style="padding: 4rem 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Categorie in Evidenza</h2>
+                    <p>Focus sulle tre principali categorie che stanno ridefinendo l'interazione digitale.</p>
+                </div>
+
+                <div class="category-banners"
+                    style="display: flex; flex-direction: column; gap: 3rem; margin-top: 2rem;">
+                    <!-- Banner Multiplayer -->
+                    <div class="category-banner"
+                        style="background-image: linear-gradient(rgba(13, 13, 13, 0.8), rgba(26, 26, 36, 0.9)), url('/images/banner_multiplayer.png'); border-color: var(--accent-cyan);">
+                        <div class="banner-content">
+                            <h3 class="banner-title" style="color: var(--accent-cyan);">Multiplayer</h3>
+                            <p class="banner-desc">Titoli competitivi e cooperativi che connettono milioni di utenti.
+                                Stimolano il teamwork, la comunicazione e creano vaste comunità sociali online, ma
+                                richiedono forte moderazione.</p>
+                        </div>
+                    </div>
+
+                    <!-- Banner Simulatori -->
+                    <a href="/simulatori" class="category-banner"
+                        style="background-image: linear-gradient(rgba(13, 13, 13, 0.8), rgba(26, 26, 36, 0.9)), url('/images/banner_simulatori.png'); border-color: var(--accent-green); text-decoration: none;">
+                        <div class="banner-content">
+                            <h3 class="banner-title" style="color: var(--accent-green);">Simulatori</h3>
+                            <p class="banner-desc">Repliche estremamente fedeli della realtà. Dal volo alla guida fino a
+                                mestieri reali. Utilizzati sia per intrattenimento che per addestramento professionale
+                                avanzato.</p>
+                            <div class="banner-btn"
+                                style="color: var(--bg-color); background-color: var(--accent-green); box-shadow: 0 0 15px rgba(57, 255, 20, 0.4); margin-top: 1rem;">
+                                Scopri di più &rarr;</div>
+                        </div>
+                    </a>
+
+                    <!-- Banner VR -->
+                    <div class="category-banner"
+                        style="background-image: linear-gradient(rgba(13, 13, 13, 0.8), rgba(26, 26, 36, 0.9)), url('/images/banner_vr.png'); border-color: var(--accent-magenta);">
+                        <div class="banner-content">
+                            <h3 class="banner-title" style="color: var(--accent-magenta);">Realtà Virtuale (VR)</h3>
+                            <p class="banner-desc">L'ultima frontiera dell'immersività. Isola l'utente dal mondo fisico
+                                per calarlo completamente nel gioco. Richiede maggiore sforzo fisico e cautela per
+                                l'affaticamento visivo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Griglia Pro e Contro -->
+        <section class="impact-section" id="impatto" style="padding-top: 2rem;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Impatto: Benefici e Rischi</h2>
+                    <p>Un'analisi equilibrata su come l'uso dei videogiochi influenzi la nostra vita reale. Scopri come
+                        mitigare i rischi.</p>
+                </div>
+
+                <div class="pros-cons-grid">
+                    <div class="impact-card pro-card">
+                        <div class="impact-header">
+                            <span class="impact-icon">
+                                <!-- Shield / Health Icon -->
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="var(--accent-green)"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                                </svg>
+                            </span>
+                            <h3>Benefici (1UP)</h3>
+                        </div>
+                        <ul class="impact-list">
+                            <li><strong>Sviluppo Cognitivo:</strong> Miglioramento del problem solving e della
+                                flessibilità mentale nei puzzle e strategici.</li>
+                            <li><strong>Riflessi e Coordinazione:</strong> Tempi di reazione ridotti e migliore
+                                coordinazione occhio-mano negli FPS.</li>
+                            <li><strong>Apprendimento Attivo:</strong> Molti titoli storici o logici migliorano
+                                l'assimilazione di nuove informazioni in modo dinamico.</li>
+                            <li><strong>Socializzazione:</strong> Creazione di legami duraturi e cooperazione strategica
+                                nelle lobby online.</li>
+                        </ul>
+                    </div>
+
+                    <div class="impact-card con-card">
+                        <div class="impact-header">
+                            <span class="impact-icon">
+                                <!-- Warning Icon -->
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="var(--accent-magenta)"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                                </svg>
+                            </span>
+                            <h3>Rischi (Game Over)</h3>
+                        </div>
+                        <ul class="impact-list">
+                            <li class="tooltip-container"><strong>Sedentarietà:</strong> Passare molte ore seduti
+                                favorisce posture scorrette.
+                                <span class="tooltip-text">💡 Mitiga: Usa sedie ergonomiche e fai 5 min di stretching
+                                    ogni ora.</span>
+                            </li>
+                            <li class="tooltip-container"><strong>Rischio Dipendenza:</strong> L'uso eccessivo può
+                                interferire con la vita quotidiana.
+                                <span class="tooltip-text">💡 Mitiga: Imposta timer di gioco rigidi e coltiva hobby
+                                    offline.</span>
+                            </li>
+                            <li class="tooltip-container"><strong>Affaticamento Visivo:</strong> La sovraesposizione
+                                agli schermi causa disturbi.
+                                <span class="tooltip-text">💡 Mitiga: Attiva filtri luce blu e segui la regola 20-20-20
+                                    per gli occhi.</span>
+                            </li>
+                            <li class="tooltip-container"><strong>Isolamento Sociale:</strong> Se abusato, il gaming
+                                sostituisce le interazioni fisiche.
+                                <span class="tooltip-text">💡 Mitiga: Privilegia sessioni in co-op locale con amici
+                                    veri.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section class="chart-section" id="grafici">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Videogiocatori per Fascia d'Età</h2>
+                    <p>Distribuzione demografica dei videogiocatori in Italia. I dati dimostrano che il gaming è un
+                        fenomeno trasversale a tutte le età.</p>
+                </div>
+
+                <div class="chart-container">
+                    <div class="loader" id="chart-loader"></div>
+                    <canvas id="ageDemographicsChart"></canvas>
+                </div>
+
+                <div class="source-note">
+                    * Fonte: Rapporto annuale IIDEA (Italian Interactive Digital Entertainment Association)
+                </div>
+            </div>
+        </section>
+
+        <!-- Salute Line Chart Section -->
+        <section class="chart-section" id="grafico-salute"
+            style="background-color: var(--surface-color); border-top: 1px solid rgba(255, 255, 255, 0.05);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Impatto su Sonno e Stress</h2>
+                    <p>Andamento settimanale delle ore di sonno in relazione all'attività videoludica. <strong>Dato
+                            essenziale: ogni soggetto analizzato gioca ai videogiochi per 3 ore di fila ogni
+                            giorno.</strong></p>
+                </div>
+
+                <div class="chart-container" style="height: 400px; position: relative;">
+                    <div class="loader" id="health-chart-loader"></div>
+                    <canvas id="healthLineChart"></canvas>
+                </div>
+
+                <div class="source-note">
+                    * Fonte dati: API pubblica TrackVibe Salute
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Progetto Scolastico a.s. 2025/2026</h4>
+                <p>Una dimostrazione tecnica e di design sull'impatto del digitale sulla salute.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Fonti e Crediti</h4>
+                <p>Dati statistici ufficiali forniti dal report annuale IIDEA sull'industria dei videogiochi in Italia.
+                </p>
+            </div>
+        </div>
         <div class="footer-bottom">
             &copy; 2026 ZenGaming. Tutti i diritti riservati.
         </div>
@@ -45,4 +231,5 @@
 
     <script src="/js/main.js"></script>
 </body>
+
 </html>
