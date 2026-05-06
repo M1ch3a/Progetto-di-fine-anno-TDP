@@ -1,0 +1,573 @@
+<!-- 
+    ============================================
+    DICHIARAZIONE DEL DOCUMENTO HTML5
+    ============================================
+    <!DOCTYPE html> indica al browser che questo è un documento HTML5.
+    Questo è il tipo di documento più moderno e standardizzato.
+-->
+<!DOCTYPE html>
+
+<!-- 
+    ============================================
+    TAG HTML - RADICE DEL DOCUMENTO
+    ============================================
+    lang="it" specifica la lingua italiana (utile per screen reader e SEO)
+    Tutto il contenuto della pagina è racchiuso in questo tag.
+-->
+<html lang="it">
+
+<!-- 
+    ============================================
+    HEAD - INTESTAZIONE (non visibile, ma fondamentale)
+    ============================================
+    Contiene metadati, collegamenti a CSS/JS, titolo della scheda.
+    Tutto ciò che è nel HEAD non viene mostrato nella pagina visivamente.
+-->
+<head>
+    <!-- 
+        CHARSET: definisce la codifica dei caratteri
+        UTF-8 supporta tutti i caratteri speciali, accentati ed emoji
+        Necessario per le lettere italiane come à, è, é, ì, ò, ù
+    -->
+    <meta charset="UTF-8">
+    
+    <!-- 
+        VIEWPORT: controlla il layout su dispositivi mobili
+        - width=device-width: larghezza uguale allo schermo del dispositivo
+        - initial-scale=1.0: zoom iniziale normale (100%)
+        - user-scalable=yes: permette all'utente di zoomare con le dita
+        Questo meta tag è ESSENZIALE per il responsive design
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    
+    <!-- 
+        TITOLO: appare nella scheda del browser e nei risultati di ricerca
+        Deve essere descrittivo e contenere parole chiave importanti
+    -->
+    <title>Simulatori | Pro e Contro | Guida Completa</title>
+    
+    <!-- 
+        GOOGLE CHARTS API (Application Programming Interface)
+        - loader.js è il file JavaScript che carica la libreria Google Charts
+        - Permette di creare grafici interattivi senza librerie esterne pesanti
+        - script type="text/javascript" indica che contiene codice JavaScript
+    -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    <!-- 
+        COLLEGAMENTO CSS ESTERNO
+        - href="style-simulatori.css": percorso del file CSS (deve essere nella stessa cartella)
+        - rel="stylesheet": dice al browser che è un foglio di stile
+        - Separare CSS dall'HTML rende il codice più pulito e riutilizzabile
+    -->
+    <link rel="stylesheet" href="style-simulatori.css">
+</head>
+
+<!-- 
+    ============================================
+    BODY - CORPO DELLA PAGINA (tutto ciò che si vede)
+    ============================================
+    Contiene tutto il contenuto visibile della pagina web.
+-->
+<body>
+
+    <!-- 
+        SFONDO IMMAGINE
+        - class="background": riferimento al CSS per il posizionamento
+        - src: URL dell'immagine (da Unsplash - circuito tecnologico)
+        - alt: testo alternativo per screen reader e SEO (accessibilità)
+        - L'immagine è fissa e copre tutto lo schermo grazie al CSS
+    -->
+    <img class="background" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format" alt="Circuito tecnologico sfondo">
+    
+    <!-- 
+        ============================================
+        CONTENITORE PRINCIPALE
+        ============================================
+        Div che avvolge tutta la card dei simulatori.
+        Serve per centrare e limitare la larghezza massima del contenuto.
+        "simulator-container" è la classe CSS che definisce lo stile.
+    -->
+    <div class="simulator-container">
+        
+        <!-- 
+            ============================================
+            CARD PRINCIPALE
+            ============================================
+            Simulator-card è il contenitore principale con effetto vetro.
+            Tutti gli elementi visibili sono dentro questa card.
+        -->
+        <div class="simulator-card">
+            
+            <!-- 
+                TITOLO PRINCIPALE con H1
+                H1 è il titolo più importante della pagina (uno solo per pagina)
+                - class="main-title": stile CSS per effetto neon
+                - ⚡: emoji decorative a tema tecnologico
+            -->
+            <h1 class="main-title">⚡ SIMULATORI ⚡</h1>
+            
+            <!-- 
+                SOTTOTITOLO con paragrafo
+                p = paragrafo di testo
+                class="subtitle": stile per testo secondario
+            -->
+            <p class="subtitle">🔍 PRO e CONTRO | Analisi approfondita con dati statistici</p>
+            
+            <!-- 
+                ============================================
+                SEZIONE GRAFICO GOOGLE CHARTS
+                ============================================
+                Contiene i due grafici interattivi.
+                I grafici vengono disegnati dal JavaScript in fondo alla pagina.
+            -->
+            <div class="chart-section">
+                <h2 class="chart-title">📊 CONFRONTO STATISTICO</h2>
+                
+                <!-- 
+                    Contenitore per il primo grafico (Popolarità)
+                    - id="chart_popularity": identificatore unico per JavaScript
+                    - style inline: larghezza 100%, altezza 400px, margine sotto
+                    - JavaScript cercherà questo ID per disegnare il grafico
+                -->
+                <div id="chart_popularity" style="width: 100%; height: 400px; margin-bottom: 20px;"></div>
+                
+                <!-- 
+                    Contenitore per il secondo grafico (Difficoltà)
+                    - id="chart_difficulty": identificatore unico per JavaScript
+                    - JavaScript cercherà questo ID per disegnare il grafico
+                -->
+                <div id="chart_difficulty" style="width: 100%; height: 400px;"></div>
+            </div>
+            
+            <!-- 
+                ============================================
+                GRIGLIA DEI SIMULATORI
+                ============================================
+                simulators-grid: griglia flessibile che su desktop mostra 3 colonne,
+                su tablet 2 colonne, su mobile 1 colonna (grazie al CSS responsive).
+                Contiene 6 card, una per ogni simulatore.
+            -->
+            <div class="simulators-grid">
+                
+                <!-- 
+                    ============================================
+                    SIMULATORE 1: X-Plane 12
+                    ============================================
+                    simulator-item: singola card del simulatore
+                    Contiene: nome, descrizione, blocchi PRO e CONTRO
+                -->
+                <div class="simulator-item">
+                    <!-- Nome del simulatore con emoji di aereo -->
+                    <div class="simulator-name">✈️ X-PLANE 12</div>
+                    <!-- Descrizione breve -->
+                    <div class="simulator-description">Simulatore di volo professionale con fisica realistica e condizioni meteorologiche dinamiche.</div>
+                    <!-- Contenitore per PRO e CONTRO -->
+                    <div class="pros-cons">
+                        <!-- Blocco PRO: ✅ emoji check verde -->
+                        <div class="pros">
+                            <h4>✅ PRO</h4>
+                            <ul>
+                                <li>Fisica di volo estremamente realistica</li>
+                                <li>Meteo dinamico in tempo reale</li>
+                                <li>Ampia compatibilità con hardware</li>
+                            </ul>
+                        </div>
+                        <!-- Blocco CONTRO: ❌ emoji croce rossa -->
+                        <div class="cons">
+                            <h4>❌ CONTRO</h4>
+                            <ul>
+                                <li>Curva di apprendimento ripida</li>
+                                <li>Richiede PC potente</li>
+                                <li>Costo dei DLC aggiuntivi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 
+                    ============================================
+                    SIMULATORE 2: Microsoft Flight Simulator
+                    ============================================
+                    Famoso per la grafica fotorealistica e la mappa mondiale.
+                    Emoji 🌍 rappresenta la Terra.
+                -->
+                <div class="simulator-item">
+                    <div class="simulator-name">🌍 MS FLIGHT SIMULATOR</div>
+                    <div class="simulator-description">Simulatore con mondo intero replicato via satellite e grafica spettacolare.</div>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ PRO</h4>
+                            <ul>
+                                <li>Grafica fotorealistica</li>
+                                <li>Mondo intero esplorabile</li>
+                                <li>Aeroporti e meteo reali</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ CONTRO</h4>
+                            <ul>
+                                <li>Connessione internet necessaria</li>
+                                <li>200+ GB di spazio richiesti</li>
+                                <li>Hardware di fascia alta</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 
+                    ============================================
+                    SIMULATORE 3: Assetto Corsa Competizione
+                    ============================================
+                    Simulatore di guida GT3/GT4 professionale.
+                    Emoji 🏎️ rappresenta un'auto da corsa.
+                -->
+                <div class="simulator-item">
+                    <div class="simulator-name">🏎️ ASSETTO CORSA COMPETIZIONE</div>
+                    <div class="simulator-description">Simulazione GT3/GT4 ufficiale con fisica avanzata e multiplayer competitivo.</div>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ PRO</h4>
+                            <ul>
+                                <li>Fisica di guida realistica</li>
+                                <li>Licenze ufficiali GT World Challenge</li>
+                                <li>Audio e forze FFB eccellenti</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ CONTRO</h4>
+                            <ul>
+                                <li>Solo auto GT (limitate categorie)</li>
+                                <li>Curva di apprendimento difficile</li>
+                                <li>Contenuti DLC a pagamento</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 
+                    ============================================
+                    SIMULATORE 4: Euro Truck Simulator 2
+                    ============================================
+                    Simulatore di guida su camion, molto rilassante.
+                    Emoji 🚛 rappresenta un camion.
+                -->
+                <div class="simulator-item">
+                    <div class="simulator-name">🚛 EURO TRUCK SIMULATOR 2</div>
+                    <div class="simulator-description">Simulazione di guida su camion attraverso l'Europa, rilassante e coinvolgente.</div>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ PRO</h4>
+                            <ul>
+                                <li>Esperienza rilassante e immersiva</li>
+                                <li>Mappa Europa dettagliata</li>
+                                <li>Grande comunità di modding</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ CONTRO</h4>
+                            <ul>
+                                <li>Gameplay ripetitivo nel lungo termine</li>
+                                <li>DLC mappe costosi</li>
+                                <li>Grafica non all'avanguardia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 
+                    ============================================
+                    SIMULATORE 5: Farming Simulator 22
+                    ============================================
+                    Simulatore agricolo con gestione economica.
+                    Emoji 🚜 rappresenta un trattore.
+                -->
+                <div class="simulator-item">
+                    <div class="simulator-name">🚜 FARMING SIMULATOR 22</div>
+                    <div class="simulator-description">Gestione di una fattoria moderna con macchinari agricoli reali e produzioni.</div>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ PRO</h4>
+                            <ul>
+                                <li>Gestione economica complessa</li>
+                                <li>Oltre 400 macchinari reali</li>
+                                <li>Multigiocatore cooperativo</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ CONTRO</h4>
+                            <ul>
+                                <li>Ritmo di gioco molto lento</li>
+                                <li>Curva iniziosa ripetitiva</li>
+                                <li>DLC stagionali a pagamento</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 
+                    ============================================
+                    SIMULATORE 6: Kerbal Space Program
+                    ============================================
+                    Simulatore spaziale con fisica orbitale reale.
+                    Emoji 🚀 rappresenta un razzo.
+                -->
+                <div class="simulator-item">
+                    <div class="simulator-name">🚀 KERBAL SPACE PROGRAM</div>
+                    <div class="simulator-description">Simulatore spaziale con fisica orbitale realistica e costruzione di razzi.</div>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ PRO</h4>
+                            <ul>
+                                <li>Fisica orbitale realistica</li>
+                                <li>Libertà creativa totale</li>
+                                <li>Educativo e divertente</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ CONTRO</h4>
+                            <ul>
+                                <li>Difficoltà tecnica elevata</li>
+                                <li>Ottimizzazione migliorabile</li>
+                                <li>Curva di apprendimento ripida</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- chiusura simulators-grid -->
+            
+            <!-- 
+                ============================================
+                SEZIONE RIASSUNTIVA GENERALE (PRO e CONTRO globali)
+                ============================================
+                Questa sezione mostra vantaggi e svantaggi comuni a TUTTI i simulatori.
+                summary-section è una griglia a 2 colonne (su desktop) o 1 colonna (su mobile).
+            -->
+            <div class="summary-section">
+                <!-- Box VANTAGGI GENERALI -->
+                <div class="summary-pro">
+                    <h3>🌟 VANTAGGI GENERALI</h3>
+                    <ul>
+                        <li>Apprendimento pratico senza rischi reali</li>
+                        <li>Risparmio economico su addestramento reale</li>
+                        <li>Immersione totale e realismo crescente</li>
+                        <li>Community attive e supporto modding</li>
+                        <li>Miglioramento di riflessi e capacità decisionali</li>
+                    </ul>
+                </div>
+                <!-- Box SVANTAGGI GENERALI -->
+                <div class="summary-cons">
+                    <h3>⚠️ SVANTAGGI GENERALI</h3>
+                    <ul>
+                        <li>Costo hardware per esperienza ottimale</li>
+                        <li>Mancanza di sensazioni fisiche reali (G-forze, etc.)</li>
+                        <li>Tempo di apprendimento significativo</li>
+                        <li>Possibile effetto "sim sickness" (movimento simulato)</li>
+                        <li>Dipendenza da periferiche specifiche (volante, joystick)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 
+                ============================================
+                FOOTER INFORMATIVO
+                ============================================
+                Testo piccolo con crediti e fonte dei dati statistici.
+            -->
+            <div class="card-footer">
+                <p>🎮 I simulatori moderni offrono un equilibrio sempre migliore tra realismo e accessibilità | Dati statistici basati su survey community 2025-2026</p>
+            </div>
+            
+        </div> <!-- chiusura simulator-card -->
+    </div> <!-- chiusura simulator-container -->
+    
+    <!-- 
+        ============================================
+        SCRIPT JAVASCRIPT PER GOOGLE CHARTS
+        ============================================
+        Questo codice viene eseguito dal browser per creare i grafici interattivi.
+        È posizionato alla fine del BODY per garantire che tutti gli elementi HTML
+        siano già stati caricati prima di eseguire lo script.
+    -->
+    <script>
+        // 
+        // GOOGLE CHARTS: CARICAMENTO LIBRERIA
+        // ============================================
+        // google.charts.load() carica la libreria Google Charts
+        // 'current' indica l'ultima versione disponibile
+        // packages: ['corechart', 'bar'] carica i pacchetti per grafici a barre e core
+        // 
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        
+        // 
+        // CALLBACK: quando la libreria è caricata, esegui drawCharts()
+        // google.charts.setOnLoadCallback() garantisce che i grafici vengano disegnati
+        // solo dopo che la libreria è completamente caricata
+        // 
+        google.charts.setOnLoadCallback(drawCharts);
+        
+        // 
+        // FUNZIONE PRINCIPALE: disegna entrambi i grafici
+        // Questa funzione viene chiamata automaticamente dopo il caricamento
+        // 
+        function drawCharts() {
+            
+            // 
+            // DATASET 1: POPOLARITÀ
+            // ============================================
+            // arrayToDataTable() converte un array bidimensionale in un formato
+            // che Google Charts può utilizzare.
+            // 
+            // Struttura della tabella:
+            // - Prima riga: intestazioni delle colonne
+            //   ['Simulatore', 'Popolarità', { role: 'style' }, { role: 'annotation' }]
+            //   { role: 'style' } è una colonna speciale per i colori delle barre
+            //   { role: 'annotation' } è una colonna speciale per i testi sopra le barre
+            // - Righe successive: i dati reali
+            //   [nome, valore, colore, annotazione]
+            // 
+            const popularityData = google.visualization.arrayToDataTable([
+                ['Simulatore', 'Popolarità', { role: 'style' }, { role: 'annotation' }],
+                ['X-Plane 12', 85, '#00ffff', '85/100'],
+                ['MS Flight Simulator', 96, '#00bfff', '96/100'],
+                ['Assetto Corsa Competizione', 90, '#00ffff', '90/100'],
+                ['Euro Truck Simulator 2', 94, '#00bfff', '94/100'],
+                ['Farming Simulator 22', 82, '#00ffff', '82/100'],
+                ['Kerbal Space Program', 88, '#00bfff', '88/100']
+            ]);
+            
+            // 
+            // DATASET 2: DIFFICOLTÀ
+            // ============================================
+            // Stessa struttura ma con valori da 1 a 10 (invece di percentuali)
+            // Colori magenta (#ff00ff e #ff44ff) per differenziare dal grafico popolarità
+            // 
+            const difficultyData = google.visualization.arrayToDataTable([
+                ['Simulatore', 'Difficoltà (1-10)', { role: 'style' }, { role: 'annotation' }],
+                ['X-Plane 12', 8.5, '#ff00ff', '8.5/10'],
+                ['MS Flight Simulator', 7.0, '#ff44ff', '7.0/10'],
+                ['Assetto Corsa Competizione', 8.0, '#ff00ff', '8.0/10'],
+                ['Euro Truck Simulator 2', 4.5, '#ff44ff', '4.5/10'],
+                ['Farming Simulator 22', 5.0, '#ff00ff', '5.0/10'],
+                ['Kerbal Space Program', 9.0, '#ff44ff', '9.0/10']
+            ]);
+            
+            // 
+            // OPZIONI GRAFICO POPOLARITÀ
+            // ============================================
+            // Configura l'aspetto visivo del grafico:
+            // - title: titolo del grafico
+            // - titleTextStyle: stile del titolo (colore, font, dimensione)
+            // - backgroundColor: sfondo del grafico (trasparente con sfumatura blu)
+            // - hAxis: asse orizzontale (nomi dei simulatori)
+            // - vAxis: asse verticale (valori 0-100)
+            // - legend: legenda (nascosta perché abbiamo una sola serie di dati)
+            // - chartArea: area del grafico (85% larghezza, 70% altezza)
+            // - tooltip: stile dei tooltip al passaggio del mouse
+            // - colors: colore delle barre
+            // - bar: impostazioni delle barre
+            // 
+            const popularityOptions = {
+                title: '🎯 POPOLARITÀ TRA GLI UTENTI',
+                titleTextStyle: {
+                    color: '#00ffff',      // Ciano neon
+                    fontSize: 16,
+                    fontName: 'Orbitron',  // Font futuristico
+                    bold: true
+                },
+                backgroundColor: 'rgba(2, 6, 23, 0.7)',  // Blu scuro trasparente
+                hAxis: {
+                    title: 'Simulatore',
+                    titleTextStyle: { color: '#38bdf8', fontSize: 12, fontName: 'Orbitron' },
+                    textStyle: { color: '#94a3b8', fontSize: 10, fontName: 'Orbitron' },
+                    slantedText: true,        // Testo inclinato
+                    slantedTextAngle: 30      // Angolo di inclinazione 30 gradi
+                },
+                vAxis: {
+                    title: 'Popolarità (%)',
+                    titleTextStyle: { color: '#38bdf8', fontSize: 12, fontName: 'Orbitron' },
+                    textStyle: { color: '#94a3b8', fontSize: 10 },
+                    minValue: 0,
+                    maxValue: 100,
+                    gridlines: { color: 'rgba(0, 255, 255, 0.15)' },  // Linee griglia ciano
+                    baselineColor: '#00ffff'
+                },
+                legend: { position: 'none' },   // Nessuna legenda
+                chartArea: { width: '85%', height: '70%' },
+                tooltip: { textStyle: { color: '#00ffff', fontSize: 12, fontName: 'Orbitron' } },
+                colors: ['#00ffff'],
+                bar: { groupWidth: '60%' }      // Larghezza barre al 60%
+            };
+            
+            // 
+            // OPZIONI GRAFICO DIFFICOLTÀ
+            // ============================================
+            // Stesse opzioni ma con tema magenta/rosa
+            // vAxis: maxValue 10 (invece di 100)
+            // 
+            const difficultyOptions = {
+                title: '⚠️ LIVELLO DI DIFFICOLTÀ (1 = Facile, 10 = Estremo)',
+                titleTextStyle: {
+                    color: '#ff00ff',       // Magenta neon
+                    fontSize: 16,
+                    fontName: 'Orbitron',
+                    bold: true
+                },
+                backgroundColor: 'rgba(2, 6, 23, 0.7)',
+                hAxis: {
+                    title: 'Simulatore',
+                    titleTextStyle: { color: '#38bdf8', fontSize: 12, fontName: 'Orbitron' },
+                    textStyle: { color: '#94a3b8', fontSize: 10, fontName: 'Orbitron' },
+                    slantedText: true,
+                    slantedTextAngle: 30
+                },
+                vAxis: {
+                    title: 'Difficoltà (1-10)',
+                    titleTextStyle: { color: '#38bdf8', fontSize: 12, fontName: 'Orbitron' },
+                    textStyle: { color: '#94a3b8', fontSize: 10 },
+                    minValue: 0,
+                    maxValue: 10,
+                    gridlines: { color: 'rgba(255, 0, 255, 0.15)' },
+                    baselineColor: '#ff00ff'
+                },
+                legend: { position: 'none' },
+                chartArea: { width: '85%', height: '70%' },
+                tooltip: { textStyle: { color: '#ff00ff', fontSize: 12, fontName: 'Orbitron' } },
+                colors: ['#ff00ff'],
+                bar: { groupWidth: '60%' }
+            };
+            
+            // 
+            // CREAZIONE DEI GRAFICI (oggetti JavaScript)
+            // ============================================
+            // new google.visualization.ColumnChart() crea un nuovo grafico a barre
+            // document.getElementById() cerca l'elemento HTML con l'ID specificato
+            // 
+            const popularityChart = new google.visualization.ColumnChart(document.getElementById('chart_popularity'));
+            const difficultyChart = new google.visualization.ColumnChart(document.getElementById('chart_difficulty'));
+            
+            // 
+            // RENDERING (DISEGNO) DEI GRAFICI
+            // ============================================
+            // .draw() disegna il grafico nel contenitore con i dati e le opzioni
+            // 
+            popularityChart.draw(popularityData, popularityOptions);
+            difficultyChart.draw(difficultyData, difficultyOptions);
+            
+            // 
+            // EVENTO RESIZE (RIDIMENSIONAMENTO FINESTRA)
+            // ============================================
+            // window.addEventListener('resize', ...) ascolta l'evento di ridimensionamento
+            // Quando l'utente ridimensiona la finestra o ruota il telefono,
+            // i grafici vengono ridisegnati per adattarsi alle nuove dimensioni.
+            // Questo garantisce che i grafici siano sempre responsivi.
+            // 
+            window.addEventListener('resize', function() {
+                popularityChart.draw(popularityData, popularityOptions);
+                difficultyChart.draw(difficultyData, difficultyOptions);
+            });
+        }
+    </script>
+    
+</body>
+</html>
