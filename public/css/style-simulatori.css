@@ -1,0 +1,510 @@
+/* ============================================ */
+/* RESET CSS UNIVERSALE - azzera tutti gli stili di default del browser */
+/* ============================================ */
+/* 
+   SCOPO: Eliminare le differenze di stile tra browser diversi.
+   - margin: 0 -> toglie spazi esterni indesiderati
+   - padding: 0 -> toglie spazi interni indesiderati
+   - box-sizing: border-box -> fa sì che larghezza e altezza di un elemento
+     includano bordi e padding, semplificando il calcolo delle dimensioni
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================ */
+/* STILI DEL BODY - contenitore principale della pagina */
+/* ============================================ */
+/* 
+   SCOPO: Impostare lo stile base di tutta la pagina.
+   - font-family: Orbitron (futuristico) + fallback 'Segoe UI'
+   - display: flex + justify-content/align-items: center -> centra il contenuto
+   - min-height: 100vh -> altezza minima pari all'intera finestra del browser
+   - padding: 20px -> evita che il contenuto tocchi i bordi su mobile
+   - position: relative -> permette ai figli posizionati di riferirsi al body
+*/
+.simulator-wrapper {
+
+    font-family: 'Orbitron', 'Segoe UI', sans-serif;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    margin: 0;
+    position: relative;
+
+}
+
+/* ============================================ */
+/* SFONDO IMMAGINE - posizionata fissa senza tagli */
+/* ============================================ */
+/* 
+   SCOPO: Mostrare un'immagine di sfondo che rimane ferma durante lo scroll.
+   - position: fixed -> rimane fissa rispetto alla viewport
+   - top/left: 50% + transform: translate(-50%, -50%) -> centra perfettamente
+   - width/height: 100% -> copre tutto lo schermo
+   - object-fit: cover -> l'immagine copre tutto senza deformarsi (ritaglia se serve)
+   - z-index: 0 -> sta sotto tutto il contenuto
+   - filter: brightness(0.2); -> Rende l'immagine sorgente più scura
+*/
+.background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.2);
+}
+
+/* ============================================ */
+/* OVERLAY - strato scuro per far risaltare il contenuto */
+/* ============================================ */
+/* 
+   SCOPO: Creare una sovrapposizione semitrasparente sopra l'immagine.
+   - pseudo-elemento ::before → non richiede HTML aggiuntivo
+   - background: rgba(0,0,0,0.65) -> nero al 65% di opacità
+   - z-index: 0 -> stesso livello dell'immagine (ma sopra perché viene dopo nel DOM)
+   Il risultato è che i testi diventano più leggibili sullo sfondo
+*/
+.simulator-wrapper::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 0;
+}
+
+/* ============================================ */
+/* CONTAINER PRINCIPALE - contiene la card dei simulatori */
+/* ============================================ */
+/* 
+   SCOPO: Contenitore che avvolge tutta la card.
+   - max-width: 1300px -> non si allarga troppo su schermi enormi
+   - z-index: 1 -> sta sopra l'overlay (z-index:0)
+   - position: relative -> necessaria per far funzionare z-index
+*/
+.simulator-container {
+    width: 100%;
+    max-width: 1300px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================ */
+/* CARD PRINCIPALE - l'elemento visibile dei simulatori */
+/* ============================================ */
+/* 
+   SCOPO: La carta principale che contiene tutto il contenuto.
+   - background: rgba(15,23,42,0.92) -> blu scuro molto trasparente
+   - backdrop-filter: blur(12px) -> EFFETTO VETRO SMERIGLIATO (glassmorphism)
+   - border-radius: 20px -> angoli arrotondati
+   - box-shadow: ombra ciano per effetto neon
+   - transition: 0.3s -> animazione morbida per l'hover
+*/
+.simulator-card {
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    border-radius: 20px;
+    padding: 2.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.12);
+    transition: 0.3s;
+}
+
+/* Effetto HOVER: quando il mouse passa sopra, la card si illumina di più */
+.simulator-card:hover {
+    box-shadow: 0 0 45px rgba(0, 255, 255, 0.3);
+}
+
+/* ============================================ */
+/* TITOLO PRINCIPALE H1 - effetto cyberpunk/neon */
+/* ============================================ */
+/* 
+   SCOPO: Titolo principale con effetto luminoso "neon".
+   - text-shadow: due livelli di bagliore (10px e 20px) per effetto glow
+   - color: #00ffff -> ciano acceso (tipico cyberpunk)
+   - letter-spacing: 3px -> spaziatura futuristica
+*/
+.main-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    letter-spacing: 3px;
+}
+
+/* ============================================ */
+/* SOTTOTITOLO */
+/* ============================================ */
+/* Testo secondario più piccolo, grigio chiaro */
+.subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* ============================================ */
+/* GRIGLIA PER I SIMULATORI - layout flessibile */
+/* ============================================ */
+/* 
+   SCOPO: Disporre le card dei simulatori in una griglia responsiva.
+   - display: grid -> layout a griglia
+   - grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+     → Ogni colonna è larga almeno 300px, se non c'è spazio va a capo
+   - gap: 1.8rem -> spazio tra le card
+*/
+.simulators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 2.5rem;
+}
+
+/* ============================================ */
+/* SCHEDA DEL SIMULATORE INDIVIDUALE */
+/* ============================================ */
+/* 
+   SCOPO: Stile di ogni singola card del simulatore.
+   - background trasparente scuro
+   - transform: translateY(-5px) -> effetto sollevamento all'hover
+*/
+.simulator-item {
+    background: rgba(2, 6, 23, 0.7);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    transition: 0.3s;
+}
+
+.simulator-item:hover {
+    border-color: rgba(0, 255, 255, 0.5);
+    transform: translateY(-5px);
+}
+
+/* ============================================ */
+/* NOME DEL SIMULATORE */
+/* ============================================ */
+/* Nome in ciano con leggero bagliore */
+.simulator-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #00ffff;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+/* ============================================ */
+/* DESCRIZIONE BREVE */
+/* ============================================ */
+/* Testo descrittivo grigio chiaro */
+.simulator-description {
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+/* ============================================ */
+/* SOTTOSEZIONE PRO E CONTRO */
+/* ============================================ */
+/* 
+   SCOPO: Contenitore flessibile in colonna per i blocchi PRO e CONTRO.
+   - display: flex + flex-direction: column -> impila verticalmente PRO e CONTRO
+*/
+.pros-cons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Blocchi PRO e CONTRO: sfondo scuro trasparente */
+.pros,
+.cons {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 0.8rem;
+}
+
+/* Colore verde per il titolo PRO */
+.pros h4 {
+    color: #4ade80;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+/* Colore rosso per il titolo CONTRO */
+.cons h4 {
+    color: #f87171;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+/* Rimuove i pallini predefiniti dalle liste */
+.pros ul,
+.cons ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Stile di ogni singolo elemento della lista */
+.pros li,
+.cons li {
+    font-size: 0.75rem;
+    color: #e2e8f0;
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+}
+
+/* Pseudo-elemento per il segno + davanti ai PRO */
+.pros li::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    color: #4ade80;
+    font-weight: bold;
+}
+
+/* Pseudo-elemento per il segno - davanti ai CONTRO */
+.cons li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: #f87171;
+    font-weight: bold;
+}
+
+/* ============================================ */
+/* SEZIONE RIASSUNTIVA GENERALE (PRO E CONTRO GLOBALI) */
+/* ============================================ */
+/* 
+   SCOPO: Mostrare vantaggi e svantaggi comuni a TUTTI i simulatori.
+   - display: grid -> due colonne (1fr 1fr) 
+   - border-top: linea di separazione ciano trasparente
+*/
+.summary-section {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+    padding-top: 2rem;
+}
+
+/* Sfondo per i box riassuntivi */
+.summary-pro,
+.summary-cons {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    padding: 1.2rem;
+}
+
+/* Titolo verde per i vantaggi */
+.summary-pro h3 {
+    color: #4ade80;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+
+/* Titolo rosso per gli svantaggi */
+.summary-cons h3 {
+    color: #f87171;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+
+/* Rimuove i pallini dalle liste */
+.summary-pro ul,
+.summary-cons ul {
+    list-style: none;
+}
+
+/* Elementi delle liste con spaziatura e posizionamento per il simbolo */
+.summary-pro li,
+.summary-cons li {
+    font-size: 0.8rem;
+    color: #e2e8f0;
+    padding: 0.4rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+/* Simbolo ✓ (spunta) per i vantaggi */
+.summary-pro li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #4ade80;
+}
+
+/* Simbolo ✗ (croce) per gli svantaggi */
+.summary-cons li::before {
+    content: '✗';
+    position: absolute;
+    left: 0;
+    color: #f87171;
+}
+
+/* ============================================ */
+/* FOOTER DELLA CARD */
+/* ============================================ */
+/* Testo piccolo, grigio scuro, con linea di separazione sopra */
+/* Footer */
+footer {
+    background-color: var(--bg-color);
+    padding: 3rem 2rem 1rem;
+    border-top: 1px solid rgba(255, 0, 127, 0.3);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-col h4 {
+    color: var(--accent-cyan);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.footer-col p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+
+/* ============================================ */
+/* SEZIONE GRAFICO GOOGLE CHARTS */
+/* ============================================ */
+/* 
+   SCOPO: Stilizzare la sezione che contiene i grafici Google Charts.
+   - border-bottom: linea di separazione ciano
+*/
+.chart-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+/* Titolo della sezione grafici in stile neon */
+.chart-title {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #00ffff;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+/* 
+   SCOPO: Personalizzare l'aspetto dei tooltip (finestrini informativi)
+   che appaiono quando si passa il mouse sui grafici Google Charts.
+   !important serve per sovrascrivere gli stili predefiniti di Google.
+*/
+.google-visualization-tooltip {
+    background: rgba(15, 23, 42, 0.95) !important;
+    border: 1px solid #00ffff !important;
+    border-radius: 8px !important;
+    backdrop-filter: blur(5px) !important;
+    font-family: 'Orbitron', monospace !important;
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN - per schermi medi (tablet) */
+/* ============================================ */
+/* 
+   SCOPO: Adattare il layout per schermi con larghezza massima 768px (tablet).
+   - Riduce padding della card
+   - Riduce dimensione titolo
+   - I grafici diventano più bassi (320px)
+   - La sezione riassuntiva diventa 1 colonna invece di 2
+*/
+@media (max-width: 768px) {
+    .simulator-card {
+        padding: 1.5rem;
+    }
+
+    .main-title {
+        font-size: 1.6rem;
+    }
+
+    .summary-section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .chart-title {
+        font-size: 1.1rem;
+    }
+
+    #chart_popularity,
+    #chart_difficulty {
+        height: 320px !important;
+    }
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN - per schermi piccoli (telefoni) */
+/* ============================================ */
+/* 
+   SCOPO: Adattare il layout per schermi con larghezza massima 480px (smartphone).
+   - Riduce ancora padding e font
+   - La griglia dei simulatori diventa 1 colonna
+   - I grafici diventano ancora più bassi (280px)
+*/
+@media (max-width: 480px) {
+    .simulator-card {
+        padding: 1.2rem;
+    }
+
+    .main-title {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+
+    .simulators-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .simulator-name {
+        font-size: 1.2rem;
+    }
+
+    #chart_popularity,
+    #chart_difficulty {
+        height: 280px !important;
+    }
+}

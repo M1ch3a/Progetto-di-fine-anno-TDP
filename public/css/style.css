@@ -918,6 +918,56 @@ footer {
     transform: translateY(0);
 }
 
+/* Data Tables */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(26, 26, 36, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    text-align: left;
+    font-size: 1rem;
+}
+
+.data-table th {
+    background-color: rgba(13, 13, 13, 0.9);
+    color: var(--accent-cyan);
+    padding: 1.2rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--accent-magenta);
+}
+
+.data-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.data-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(57, 255, 20, 0.05);
+    box-shadow: inset 5px 0 0 var(--accent-green);
+}
+
+.data-table tbody tr:hover td {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
@@ -992,5 +1042,226 @@ footer {
     .gateway-banner.reverse {
         flex-direction: column;
         text-align: center;
+    }
+}
+
+/* ============================================ */
+/* LOGIN PAGE - Stili specifici per la pagina di accesso */
+/* Questi stili sono basati sul lavoro del compagno (login-v3) */
+/* e integrati nel design system di ZenGaming */
+/* ============================================ */
+
+/* Sfondo scuro per la pagina di login */
+body.login-page {
+    /* Classe applicata al body solo nella pagina di login */
+    /* Imposta il layout centrato e il font del compagno */
+    font-family: 'Orbitron', 'Segoe UI', sans-serif;
+    background-color: #000000;  /* Colore nero di fallback se lo sfondo non carica */
+    display: flex;
+    flex-direction: column;     /* Colonna: navbar in cima, contenuto sotto */
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Immagine di sfondo fissa - posizionata piena senza tagli */
+.login-background {
+    position: fixed;            /* Rimane ferma mentre si scrolla */
+    top: 50%;                   /* Posiziona il bordo superiore al centro */
+    left: 50%;                  /* Posiziona il bordo sinistro al centro */
+    transform: translate(-50%, -50%); /* Sposta indietro del 50% per centrare perfettamente */
+    width: 100%;                /* Larghezza piena */
+    height: 100%;               /* Altezza piena */
+    object-fit: contain;        /* Adatta l'immagine senza tagliarla (la fa entrare tutta) */
+    z-index: 0;                 /* Livello più basso, sotto tutto il contenuto */
+}
+
+/* Overlay - strato scuro per far risaltare il contenuto */
+/* pseudo-elemento ::before → non richiede HTML aggiuntivo */
+body.login-page::before {
+    content: '';               /* Elemento vuoto ma necessario per far apparire il pseudo-elemento */
+    position: fixed;           /* Posizione fissa come lo sfondo */
+    top: 0;                    /* Parte dall'angolo in alto a sinistra */
+    left: 0;
+    width: 100%;               /* Copre tutta la larghezza */
+    height: 100%;              /* Copre tutta l'altezza */
+    background: rgba(0, 0, 0, 0.5); /* Nero semitrasparente al 50% */
+    z-index: 0;                /* Stesso livello dello sfondo */
+}
+
+/* Container del login - contiene la card, centrato nella pagina */
+.login-container {
+    width: 100%;               /* Larghezza responsiva */
+    max-width: 500px;          /* Massimo 500px su schermi grandi */
+    position: relative;        /* Per stare sopra lo sfondo */
+    z-index: 1;                /* Livello 1 -> sopra l'overlay (z-index:0) */
+    margin: auto;              /* Centra orizzontalmente */
+    padding: 2rem;             /* Spazio interno per bordi su mobile */
+}
+
+/* Card principale - l'elemento visibile del form */
+/* Effetto vetro smerigliato (glassmorphism) come nel resto del sito */
+.login-card {
+    background: rgba(15, 23, 42, 0.9); /* Blu scuro con trasparenza al 90% */
+    border: 1px solid rgba(0, 255, 255, 0.2); /* Bordo ciano chiaro molto trasparente */
+    border-radius: 12px;        /* Angoli arrotondati */
+    padding: 2.5rem;            /* Spazio interno generoso */
+    backdrop-filter: blur(10px); /* Effetto vetro smerigliato - sfoca ciò che sta dietro */
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.1); /* Ombra luminosa ciano */
+    transition: 0.3s;           /* Transizione morbida per l'hover */
+}
+
+/* Effetto HOVER sulla card - si illumina di più */
+.login-card:hover {
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.25); /* Ombra più intensa */
+}
+
+/* Titolo della pagina login - effetto cyberpunk/neon */
+.login-title {
+    text-align: center;         /* Centrato */
+    margin-bottom: 2rem;        /* Spazio sotto per separare dagli input */
+    font-size: 1.8rem;          /* Dimensione del testo */
+    font-weight: 800;           /* Grassetto molto pesante */
+    color: #00ffff;             /* Colore ciano acceso */
+    text-shadow: 0 0 10px #00ffff; /* Bagliore neon intorno al testo */
+    letter-spacing: 2px;        /* Spaziatura tra le lettere (effetto futuristico) */
+}
+
+/* Gruppo form - contiene label + input */
+.form-group {
+    margin-bottom: 1.5rem;      /* Spazio tra un campo e l'altro */
+}
+
+/* Etichetta dei campi */
+.login-page label {
+    display: block;             /* Occupa tutta la riga */
+    font-size: 0.8rem;          /* Testo piccolo */
+    color: #38bdf8;             /* Azzurro chiaro */
+    letter-spacing: 1px;        /* Leggera spaziatura */
+    margin-bottom: 0.5rem;      /* Spazio tra label e input */
+    font-weight: 500;           /* Medio grassetto */
+}
+
+/* Campi input */
+.login-page input {
+    width: 100%;                /* Larghezza piena del contenitore */
+    padding: 12px;              /* Spazio interno per rendere l'input comodo */
+    border-radius: 8px;         /* Angoli arrotondati */
+    border: 1px solid #334155;  /* Bordo grigio scuro */
+    background: #020617;        /* Sfondo blu molto scuro (quasi nero) */
+    color: #e5e7eb;             /* Testo grigio chiaro */
+    transition: 0.2s;           /* Transizione per l'effetto focus */
+    font-size: 1rem;            /* Dimensione testo standard */
+    font-family: var(--font-body);
+}
+
+/* Effetto focus - quando clicco nell'input */
+.login-page input:focus {
+    border-color: #00ffff;      /* Bordo diventa ciano brillante */
+    box-shadow: 0 0 10px #00ffff; /* Effetto bagliore esterno */
+    outline: none;              /* Rimuove il bordo blu di default del browser */
+}
+
+/* Bottone di login - gradiente cyberpunk */
+.btn-login {
+    width: 100%;                /* Larghezza piena */
+    padding: 12px;              /* Stesso padding degli input per coerenza */
+    border-radius: 8px;         /* Angoli arrotondati */
+    border: none;               /* Nessun bordo */
+    background: linear-gradient(90deg, #00ffff, #ff00ff); /* Gradiente: da CIANO a MAGENTA */
+    color: black;               /* Testo nero per contrasto */
+    font-weight: bold;          /* Testo in grassetto */
+    cursor: pointer;            /* Cambia il cursore a mano per indicare che è cliccabile */
+    text-transform: uppercase;  /* Testo tutto maiuscolo */
+    letter-spacing: 1px;        /* Spaziatura tra lettere */
+    transition: 0.3s;           /* Transizione per hover */
+    margin-top: 0.5rem;         /* Piccolo spazio sopra */
+    font-family: var(--font-heading);
+    font-size: 1rem;
+}
+
+/* Effetto hover sul bottone */
+.btn-login:hover {
+    transform: scale(1.02);     /* Leggero ingrandimento (del 2%) */
+    box-shadow: 0 0 20px #00ffff; /* Bagliore ciano intenso */
+}
+
+/* Messaggio di errore */
+.error-message {
+    background: rgba(255, 0, 0, 0.1);  /* Rosso semitrasparente */
+    color: #ff4d4d;                     /* Rosso chiaro per il testo */
+    border-left: 3px solid #ff0000;     /* Bordo sinistro rosso pieno */
+    padding: 10px;                      /* Spazio interno */
+    border-radius: 6px;                 /* Angoli arrotondati */
+    margin-bottom: 1rem;                /* Spazio sotto */
+}
+
+/* Classe HIDDEN per nascondere il messaggio di errore */
+.error-message.hidden {
+    display: none;          /* Nasconde completamente l'elemento */
+}
+
+/* Nota informativa - mostra le credenziali di test */
+.info-note {
+    margin-top: 1.5rem;              /* Spazio sopra */
+    padding-top: 1rem;               /* Padding sopra interno */
+    border-top: 1px solid rgba(0, 255, 255, 0.2); /* Linea divisoria ciano */
+    text-align: center;              /* Testo centrato */
+    font-size: 0.8rem;               /* Testo piccolo */
+    color: #94a3b8;                  /* Grigio ardesia */
+}
+
+.info-note p {
+    margin-bottom: 0.5rem;           /* Spazio sotto il paragrafo */
+    color: #00ffff;                  /* Testo ciano per attirare l'attenzione */
+}
+
+.info-note ul {
+    list-style: none;                /* Rimuove i pallini della lista */
+    display: flex;                   /* Layout flessibile per la lista */
+    flex-wrap: wrap;                 /* Se non c'è spazio, va a capo */
+    justify-content: center;         /* Centra gli elementi */
+    gap: 0.8rem;                     /* Spazio tra gli elementi */
+}
+
+.info-note li {
+    font-family: monospace;          /* Font a larghezza fissa (tipo codice) */
+    font-size: 0.75rem;              /* Testo ancora più piccolo */
+    background: rgba(0, 0, 0, 0.5);  /* Sfondo nero semitrasparente */
+    padding: 0.2rem 0.5rem;          /* Spazio interno */
+    border-radius: 4px;              /* Angoli leggermente arrotondati */
+}
+
+/* Pulsante Login nella navbar */
+.nav-login-btn {
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+    color: black !important;
+    padding: 0.4rem 1.2rem !important;
+    border-radius: 20px;
+    font-weight: 700 !important;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.nav-login-btn:hover {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+    transform: translateY(-2px);
+    color: black !important;
+}
+
+/* Responsive login page */
+@media (max-width: 480px) {
+    /* Quando lo schermo è più stretto di 480px (es. smartphone) */
+
+    .login-card {
+        padding: 1.5rem;        /* Riduce il padding interno della card */
+    }
+
+    .login-title {
+        font-size: 1.4rem;      /* Riduce la dimensione del titolo */
+    }
+
+    .info-note ul {
+        flex-direction: column;  /* Lista in colonna invece che in riga */
+        align-items: center;     /* Centra gli elementi */
+        gap: 0.4rem;             /* Riduce lo spazio tra elementi */
     }
 }
