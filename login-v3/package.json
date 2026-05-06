@@ -1,0 +1,22 @@
+{
+  "name": "benessere-digitale",
+  "version": "1.0.0",
+  "description": "Progetto scolastico sul Benessere Digitale - Homepage MVC",
+  "main": "server.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
+    "express": "^4.22.1",
+    "express-session": "^1.19.0",
+    "mysql2": "^3.22.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
