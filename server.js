@@ -24,14 +24,8 @@ app.use(bodyParser.json());
 // Il client (frontend) invia JSON come { "username": "mario", "password": "1234" }
 // body-parser lo converte in oggetto JavaScript accessibile con req.body
 
-// Middleware 3: File statici (CSS, immagini, JS client)
-app.use(express.static(path.join(__dirname, 'public')));
-// Serve automaticamente tutti i file dalla cartella 'public'
-// Esempio: richiesta /css/style.css -> cerca in public/css/style.css
-// Non bisogna creare route specifiche per ogni file
-
 /* ============================================ */
-// CONFIGURAZIONE DELLE SESSIONI
+// CONFIGURAZIONE DELLE SESSIONI (DEVE PRECEDERE LA PROTEZIONE DELLE ROTTE)
 /* ============================================ */
 
 app.use(session({
@@ -57,6 +51,26 @@ app.use(session({
         // Dopo 1 ora, l'utente deve rifare il login
     }
 }));
+
+// Middleware 2.5: Protezione delle pagine principali PRIMA di servire i file statici
+// Intercettiamo le richieste per la home e le altre pagine per forzare il login
+app.use((req, res, next) => {
+    const protectedPaths = ['/', '/index.html', '/videogiochi', '/simulatori'];
+
+    // Se la rotta è tra quelle protette, esegue il middleware di autenticazione
+    if (protectedPaths.includes(req.path)) {
+        return requireAuth(req, res, next);
+    }
+
+    // Altrimenti passa al prossimo middleware (es. express.static per CSS, JS, immagini, o /login.html)
+    next();
+});
+
+// Middleware 3: File statici (CSS, immagini, JS client)
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
+// index: false impedisce a express.static di servire automaticamente index.html sulla rotta '/'
+// Così la rotta '/' cade nel nostro app.get('/', ...) più in basso
+// Serve automaticamente tutti gli altri file (CSS, immagini, JS client)
 
 /* ============================================ */
 // IMPORTA LE ROTTE DI AUTENTICAZIONE (POST /login)
@@ -118,8 +132,8 @@ app.get('/logout', (req, res) => {
 // ROUTE PAGINE - PROTETTE DA AUTENTICAZIONE
 /* ============================================ */
 
-// Fallback to index.html for root if not served by static
-app.get('/', (req, res) => {
+// Ora questa rotta è PROTETTA tramite l'interceptor sopra, ma aggiungiamo requireAuth per sicurezza
+app.get('/', requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
